@@ -24,6 +24,7 @@ struct DLL{
     void searching(int num);
     void maximum();
     void minimum();
+    void middle();
 
     void deleteHead();
     void deleteEnd();
@@ -239,6 +240,8 @@ void DLL::deleteEnd(){
 
 void DLL::print(){
 
+    int count =0;
+
     if(head == NULL){
         cout<<"List Is Empty";
     }else{
@@ -246,12 +249,34 @@ void DLL::print(){
 
         while(h != NULL){
             cout<<h->data<<" "<<endl;
+            count++;
+            
 
             h = h->next;
 
         }
+        cout<<"Node Count: "<<count<<endl;
     }
 }
+
+void DLL::middle() {
+    if (head == NULL) {
+        cout << "List is empty" << endl;
+        return;
+    }
+
+    Node *slow = head;
+    Node *fast = head;
+
+    // Move fast by 2 steps and slow by 1 step
+    while (fast != NULL && fast->next != NULL) {
+        slow = slow->next;
+        fast = fast->next->next;
+    }
+
+    cout << "Middle Element: " << slow->data << endl;
+}
+
 
 
 int main() {
@@ -274,6 +299,7 @@ int main() {
     // li.deleteEnd();
 
     li.deleteAtAnyPos(3);
+    li.middle();
 
 
     li.print();
