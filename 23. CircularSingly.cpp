@@ -25,6 +25,9 @@ struct CSL{
 
     void maximum();
     void minimum();
+
+    void middle();
+
     void print();
 
 
@@ -175,6 +178,8 @@ void CSL::print() {
     
 }
 
+
+
 void CSL::maximum(){
 
     if(head == NULL){
@@ -218,23 +223,47 @@ void CSL::minimum(){
     cout<<"Minimum: "<<min<<endl;
 }
 
+void CSL::middle(){
+    if(head== NULL){
+        cout<<"Empty";
+        return ;
+    }
+
+    Node *slow = head;
+    Node *fast = head;
+
+    while(fast->next != head && fast->next->next != head){
+        slow = slow->next;
+        fast = fast->next->next;
+    }
+    cout<<"Middle element: "<<slow->data;
+}
+
 int main() {
 
     CSL li;
 
     li.insertAtHead(20);
+    li.insertAtEnd(30);
+    li.insertAtEnd(40);
     li.insertAtEnd(10);
+    li.insertAtEnd(50);
 
-    li.deleteHead();
-    li.deleteEnd();
+    // li.deleteHead();
+    // li.deleteEnd();
 
     li.searching(20);
     li.insertAtAnypos(44,2);
+    li.print();
+    
     li.maximum();
     li.minimum();
 
+    
+
 
     li.print();
+    li.middle();
 
 
 
