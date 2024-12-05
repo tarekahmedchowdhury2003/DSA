@@ -28,6 +28,8 @@ struct CDL{
     void maximum();
     void minimum();
 
+    void middle();
+
     void print();
 };
 
@@ -144,24 +146,25 @@ void CDL::deleteEnd(){
     delete lastNode;
 }
 
-void CDL::searching(int num){
 
+void CDL::searching(int num) {
     if (head == NULL) {
         cout << "List is Empty" << endl;
         return;
     }
 
     Node *h = head;
-
-    do{
-        if(h->data == num){
-            cout<<"Found"<<endl;
+    do {
+        if (h->data == num) {
+            cout << "Found" << endl;
+            return;  
         }
         h = h->next;
-    }while(h != head);
+    } while (h != head);
 
-    cout<<"Not Found"<<endl;
+    cout << "Not Found" << endl;
 }
+
 
 void CDL::minimum(){
 
@@ -227,6 +230,22 @@ void CDL::print(){
     }
 }
 
+void CDL::middle(){
+    if(head==NULL){
+        cout<<"Empty";
+        return;
+    }
+
+    Node *slow = head;
+    Node *fast = head;
+
+    while(fast->next != head && fast->next->next != head){
+        slow = slow->next;
+        fast = fast->next->next;
+    }
+    cout<<"Middle element: "<<slow->data<<endl;
+}
+
 
 int main() {
 
@@ -238,11 +257,16 @@ int main() {
     // li.deleteHead();
     // li.deleteEnd();
 
-    li.searching(1);
+    li.insertAtAnypos(50,2);
+
+    
     li.minimum();
     li.maximum();
 
+    li.middle();
+
     li.print();
+    li.searching(20);
 
 
     return 0;
