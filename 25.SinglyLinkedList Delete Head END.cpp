@@ -99,6 +99,30 @@ void SLL::deleteAtEnd(){
 
     }
 }
+
+void SLL::deleteAtAnyPos(int pos) {
+    
+    if (head == NULL) {
+        cout << "List is empty" << endl;
+        return;
+    }
+
+    if (pos == 1) {
+        deleteAtHead();
+        return;
+    }
+
+    Node *h = head;
+
+    for (int i = 1; i < pos - 1 && h != NULL; i++) {
+        h = h->next;
+    }
+
+
+    Node *temp = h->next;
+    h->next = temp->next;
+    delete temp;
+}
 void SLL::print(){
     
     if(head == NULL){
