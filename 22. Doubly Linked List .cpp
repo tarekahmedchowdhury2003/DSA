@@ -12,6 +12,7 @@ struct Node{
     }
 };
 
+
 struct DLL{
 
     Node *head = NULL;
@@ -30,6 +31,8 @@ struct DLL{
     void deleteEnd();
     void deleteAtAnyPos(int pos);
 
+    void reverse();
+
     void print();
 
 };
@@ -37,6 +40,7 @@ struct DLL{
 void DLL::insertAtHead(int d){
 
     Node *newNode = new Node(d);
+
 
     if(head == NULL){
         head = newNode;
@@ -102,6 +106,7 @@ void DLL::insertAtAnypos(int d, int pos) {
 }
 
 void DLL::deleteAtAnyPos(int pos) {
+
     if (head == NULL) {
         cout << "List is empty" << endl;
         return;
@@ -134,6 +139,31 @@ void DLL::deleteAtAnyPos(int pos) {
 
     delete h; 
 }
+
+void DLL::reverse() {
+
+    if (head == NULL) {
+        cout << "List is empty" << endl;
+        return;
+    }
+
+    Node *h = head, *temp = NULL;
+
+    while (h != NULL) {
+        temp = h->prev;       // Save the current 'prev'
+        h->prev = h->next;    // Swap 'prev' and 'next'
+        h->next = temp;       // Complete the pointer swap
+        h = h->prev;          // Move to the next node (previously the 'next')
+    }
+
+    // Adjust the head to the last processed node
+    if (temp != NULL) {
+        head = temp->prev;  // Set the head to the new first node
+    }
+}
+
+
+
 
 
 void DLL::searching(int num){
@@ -250,7 +280,6 @@ void DLL::print(){
         while(h != NULL){
             cout<<h->data<<" "<<endl;
             count++;
-            
 
             h = h->next;
 
@@ -298,8 +327,10 @@ int main() {
     // li.deleteHead();
     // li.deleteEnd();
 
-    li.deleteAtAnyPos(3);
+    // li.deleteAtAnyPos(30,3);
     li.middle();
+
+    li.reverse();
 
 
     li.print();
