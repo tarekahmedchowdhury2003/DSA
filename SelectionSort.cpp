@@ -7,7 +7,8 @@ void SelectionSort(int arr[], int n){
         min = i;
     
         for(int j= i+1; j<n; j++){
-            if(arr[j] >arr[min]){
+
+            if(arr[j] < arr[min]){      //  Ascending order . // If Deccending order then modify this condition (arr[j] > arr[min]);
                 min = j;
             }
         }
